@@ -1,6 +1,14 @@
 import * as styles from './product.css'
 
-import { Box, Button, Cluster, Stack, Text } from 'src/components'
+import {
+  Box,
+  Button,
+  Cluster,
+  HiddenVisually,
+  NumberField,
+  Stack,
+  Text,
+} from 'src/components'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -45,11 +53,11 @@ export function Product(props: Props): JSX.Element {
           </Cluster>
           <form onSubmit={(e) => e.preventDefault()}>
             <Stack space="xs">
-              <div>
-                <button type="button">-</button>
-                <input type="number" defaultValue={0} />
-                <button type="button">+</button>
-              </div>
+              <NumberField
+                aria-label="Quantity"
+                minValue={0}
+                defaultValue={0}
+              />
               <Button type="submit" onClick={() => {}}>
                 Add to cart
               </Button>
