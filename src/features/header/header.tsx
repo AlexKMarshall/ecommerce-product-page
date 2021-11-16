@@ -4,8 +4,7 @@ import { Box, Cluster, Icon, IconButton } from 'src/components'
 import Image from 'next/image'
 import Logo from 'public/logo.svg'
 
-type Props = {}
-export function Header(props: Props): JSX.Element {
+export function Header(): JSX.Element {
   return (
     <Box component="header" padding="l">
       <Cluster space="xs" justify="space-between">

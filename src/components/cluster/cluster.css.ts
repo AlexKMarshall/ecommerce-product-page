@@ -4,5 +4,4 @@ export const cluster = style({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
-  alignItems: 'center',
 })

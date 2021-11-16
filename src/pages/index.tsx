@@ -1,10 +1,7 @@
-import { Box } from 'src/components'
+import { Header, Product } from 'src/features'
+
 import Head from 'next/head'
-import { Header } from 'src/features'
-import Image from 'next/image'
-import Link from 'next/link'
 import type { NextPage } from 'next'
-import productImage1 from 'public/image-product-1.jpg'
 
 const Home: NextPage = () => {
   return (
@@ -16,33 +13,7 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <main>
-        <Box>
-          <Image
-            src={productImage1}
-            alt="tan and white sneakers on orange background"
-            priority
-          />
-        </Box>
-        <Link href="/">Sneaker Company</Link>
-        <h1>Fall Limited Edition Sneakers</h1>
-        <p>
-          These low-profile sneakers are your perfect casual wear companion.
-          Featuring a durable rubber outer sole, they’ll withstand everything
-          the weather can offer.
-        </p>
-        <p>
-          $125.00
-          <span>50%</span>
-        </p>
-        <p>
-          <s>$250.00</s>
-        </p>
-        <form>
-          <button type="button">-</button>
-          <input type="number" defaultValue={0} />
-          <button type="button">+</button>
-          <button type="submit">Add to cart</button>
-        </form>
+        <Product />
       </main>
     </>
   )

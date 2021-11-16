@@ -13,6 +13,11 @@ globalStyle('body', {
   lineHeight: 1.5,
 })
 
+globalStyle('a', {
+  textDecoration: 'none',
+  color: 'inherit',
+})
+
 globalStyle('a:not([class])', {
   textDecorationSkipInk: 'auto',
 })

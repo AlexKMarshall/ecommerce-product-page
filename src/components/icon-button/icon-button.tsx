@@ -2,11 +2,7 @@ import * as styles from './icon-button.css'
 
 import Link from 'next/link'
 import { ReactNode } from 'react'
-
-type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never }
-type XOR<T, U> = T | U extends object
-  ? (Without<T, U> & U) | (Without<U, T> & T)
-  : T | U
+import { XOR } from 'src/types/utils'
 
 type ButtonProps = {
   onClick: () => void

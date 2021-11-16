@@ -7,6 +7,10 @@ const properties = defineProperties({
     padding: themeTokens.space,
     gap: themeTokens.space,
     justifyContent: ['flex-start', 'center', 'flex-end', 'space-between'],
+    alignItems: ['stretch', 'center', 'baseline'],
+    fontSize: themeTokens.fontSize,
+    fontWeight: themeTokens.fontWeight,
+    display: ['block', 'inline'],
   },
 })
 
