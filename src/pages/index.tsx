@@ -1,10 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
-import { Box, Cluster, Icon, IconButton } from 'src/components'
-
+import { Box } from 'src/components'
 import Head from 'next/head'
+import { Header } from 'src/features'
 import Image from 'next/image'
 import Link from 'next/link'
-import Logo from 'public/logo.svg'
 import type { NextPage } from 'next'
 import productImage1 from 'public/image-product-1.jpg'
 
@@ -16,30 +14,7 @@ const Home: NextPage = () => {
         <meta name="description" content="Sample E-Commerce Product Page" />
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
-      <Box component="header" padding="l">
-        <Cluster space="xs" justify="space-between">
-          <Cluster space="xs">
-            <IconButton>
-              <Icon icon="menu" />
-            </IconButton>
-            <Image src={Logo} alt="Sneakers" />
-          </Cluster>
-
-          <Cluster space="xs">
-            <IconButton>
-              <Icon icon="cart" />
-            </IconButton>
-            <IconButton>
-              <img
-                src="/image-avatar.png"
-                alt="profile"
-                width="24"
-                height="24"
-              />
-            </IconButton>
-          </Cluster>
-        </Cluster>
-      </Box>
+      <Header />
       <main>
         <Box>
           <Image
