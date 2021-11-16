@@ -10,17 +10,17 @@ export function Header(props: Props): JSX.Element {
     <Box component="header" padding="l">
       <Cluster space="xs" justify="space-between">
         <Cluster space="xs">
-          <IconButton>
+          <IconButton onClick={() => {}}>
             <Icon icon="menu" />
           </IconButton>
           <Image src={Logo} alt="Sneakers" />
         </Cluster>
 
         <Cluster space="xs">
-          <IconButton>
+          <IconButton onClick={() => {}}>
             <Icon icon="cart" />
           </IconButton>
-          <IconButton>
+          <IconButton href="/">
             <img src="/image-avatar.png" alt="profile" width="24" height="24" />
           </IconButton>
         </Cluster>
