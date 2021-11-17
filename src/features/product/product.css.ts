@@ -1,7 +1,9 @@
+import { colorTokens, themeTokens } from 'src/styles/theme.css'
+
 import { style } from '@vanilla-extract/css'
-import { themeTokens } from 'src/styles/theme.css'
 
 export const brand = style({
+  color: colorTokens.text.accent,
   textTransform: 'uppercase',
   fontSize: themeTokens.fontSize.xs,
   fontWeight: themeTokens.fontWeight.bold,

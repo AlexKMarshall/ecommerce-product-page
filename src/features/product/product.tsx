@@ -31,7 +31,7 @@ export function Product(props: Props): JSX.Element {
             <Link href="/">
               <a className={styles.brand}>Sneaker Company</a>
             </Link>
-            <Text component="h1" size="xl" weight="bold">
+            <Text component="h1" size="xl" weight="bold" color="primary">
               Fall Limited Edition Sneakers
             </Text>
             <p>
@@ -42,14 +42,14 @@ export function Product(props: Props): JSX.Element {
           </Stack>
           <Cluster justify="space-between" align="baseline">
             <p>
-              <Text size="xl" weight="bold" inline>
+              <Text size="xl" weight="bold" color="primary" inline>
                 $125.00
               </Text>
               <span>50%</span>
             </p>
-            <p>
+            <Text component="p" color="muted">
               <s>$250.00</s>
-            </p>
+            </Text>
           </Cluster>
           <form onSubmit={(e) => e.preventDefault()}>
             <Stack space="xs">
