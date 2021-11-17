@@ -29,14 +29,17 @@ export function Product({
   brand,
   name,
   description,
-  price,
-  discountPercent,
-  oldPrice,
+  price: priceProp,
+  discountPercent: discountPercentProp,
+  oldPrice: oldPriceProp,
 }: Props): JSX.Element {
   const priceFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
   })
+  const price = priceFormatter.format(priceProp)
+  const discountPercent = discountPercentProp ? `${discountPercentProp}%` : null
+  const oldPrice = oldPriceProp ? priceFormatter.format(oldPriceProp) : null
 
   return (
     <>
@@ -61,13 +64,13 @@ export function Product({
           <Cluster justify="space-between" align="baseline">
             <Cluster space="2xs">
               <Text size="xl" weight="bold" color="primary" inline>
-                {priceFormatter.format(price)}
+                {price}
               </Text>
-              {discountPercent ? <Pill>{`${discountPercent}%`}</Pill> : null}
+              {discountPercent ? <Pill>{discountPercent}</Pill> : null}
             </Cluster>
             {oldPrice ? (
               <Text component="p" color="muted">
-                <s>{priceFormatter.format(oldPrice)}</s>
+                <s>{oldPrice}</s>
               </Text>
             ) : null}
           </Cluster>

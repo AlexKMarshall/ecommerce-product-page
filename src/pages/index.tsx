@@ -2,25 +2,13 @@ import { Header, Product } from 'src/features'
 
 import { Box } from 'src/components'
 import Head from 'next/head'
-import type { NextPage } from 'next'
+import { InferGetStaticPropsType } from 'next'
 
-const Home: NextPage = () => {
-  const product = {
-    brand: {
-      name: 'Sneaker Company',
-      url: '/',
-    },
-    name: 'Fall Limited Edition Sneakers',
-    description:
-      'These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.',
-    price: 125,
-    discountPercent: 50,
-    oldPrice: 250,
-  }
+function Home({ product }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <Head>
-        <title>Fall Limited Edition Sneakers</title>
+        <title>{product.name}</title>
         <meta name="description" content="Sample E-Commerce Product Page" />
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
@@ -33,3 +21,22 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export async function getStaticProps() {
+  const product = {
+    brand: {
+      name: 'Sneaker Company',
+      url: '/',
+    },
+    name: 'Fall Limited Edition Sneakers',
+    description:
+      'These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.',
+    price: 125,
+    discountPercent: 50,
+    oldPrice: 250,
+  }
+
+  return {
+    props: { product },
+  }
+}
