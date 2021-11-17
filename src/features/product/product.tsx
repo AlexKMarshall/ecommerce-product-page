@@ -14,8 +14,30 @@ import Image from 'next/image'
 import Link from 'next/link'
 import productImage1 from 'public/image-product-1.jpg'
 
-type Props = {}
-export function Product(props: Props): JSX.Element {
+type Props = {
+  brand: {
+    name: string
+    url: string
+  }
+  name: string
+  description: string
+  price: number
+  discountPercent?: number
+  oldPrice?: number
+}
+export function Product({
+  brand,
+  name,
+  description,
+  price,
+  discountPercent,
+  oldPrice,
+}: Props): JSX.Element {
+  const priceFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
+
   return (
     <>
       <Box>
@@ -28,28 +50,26 @@ export function Product(props: Props): JSX.Element {
       <Box padding="l">
         <Stack space="xl">
           <Stack>
-            <Link href="/">
-              <a className={styles.brand}>Sneaker Company</a>
+            <Link href={brand.url}>
+              <a className={styles.brand}>{brand.name}</a>
             </Link>
             <Text component="h1" size="xl" weight="bold" color="primary">
-              Fall Limited Edition Sneakers
+              {name}
             </Text>
-            <p>
-              These low-profile sneakers are your perfect casual wear companion.
-              Featuring a durable rubber outer sole, they’ll withstand
-              everything the weather can offer.
-            </p>
+            <p>{description}</p>
           </Stack>
           <Cluster justify="space-between" align="baseline">
             <Cluster space="2xs">
               <Text size="xl" weight="bold" color="primary" inline>
-                $125.00
+                {priceFormatter.format(price)}
               </Text>
-              <Pill>50%</Pill>
+              {discountPercent ? <Pill>{`${discountPercent}%`}</Pill> : null}
             </Cluster>
-            <Text component="p" color="muted">
-              <s>$250.00</s>
-            </Text>
+            {oldPrice ? (
+              <Text component="p" color="muted">
+                <s>{priceFormatter.format(oldPrice)}</s>
+              </Text>
+            ) : null}
           </Cluster>
           <form onSubmit={(e) => e.preventDefault()}>
             <Stack space="xs">
