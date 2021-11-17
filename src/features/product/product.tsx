@@ -4,8 +4,8 @@ import {
   Box,
   Button,
   Cluster,
-  HiddenVisually,
   NumberField,
+  Pill,
   Stack,
   Text,
 } from 'src/components'
@@ -41,12 +41,12 @@ export function Product(props: Props): JSX.Element {
             </p>
           </Stack>
           <Cluster justify="space-between" align="baseline">
-            <p>
+            <Cluster space="2xs">
               <Text size="xl" weight="bold" color="primary" inline>
                 $125.00
               </Text>
-              <span>50%</span>
-            </p>
+              <Pill>50%</Pill>
+            </Cluster>
             <Text component="p" color="muted">
               <s>$250.00</s>
             </Text>

@@ -2,6 +2,7 @@ import { createGlobalTheme, createThemeContract } from '@vanilla-extract/css'
 
 export const themeTokens = createGlobalTheme(':root', {
   space: {
+    '2xs': '0.5rem',
     xs: '0.75rem',
     s: '1rem',
     m: '1.25rem',
@@ -26,6 +27,7 @@ export const themeTokens = createGlobalTheme(':root', {
     wide: '0.15em',
   },
   borderRadius: {
+    s: '6px',
     m: '10px',
     circle: '50%',
   },
@@ -35,6 +37,7 @@ export const toneTokens = createGlobalTheme(':root', {
   white: 'hsl(0 0% 100%)',
   black: 'hsl(0 0% 0%)',
   orange: 'hsl(26 100% 55%)',
+  paleOrange: 'hsl(25 100% 94%)',
   darkGrayishBlue: 'hsl(214 9% 45%)',
   veryDarkBlue: 'hsl(220 13% 13%)',
   grayishBlue: 'hsl(220 14% 75%)',
@@ -45,6 +48,7 @@ export const colorTokens = createGlobalTheme(':root', {
   background: {
     body: toneTokens.white,
     accent: toneTokens.orange,
+    mutedAccent: toneTokens.paleOrange,
     button: toneTokens.lightGrayishBlue,
   },
   text: {

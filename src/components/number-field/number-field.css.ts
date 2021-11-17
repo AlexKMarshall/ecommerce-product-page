@@ -1,29 +1,36 @@
+import { colorTokens, themeTokens } from 'src/styles/theme.css'
+
 import { style } from '@vanilla-extract/css'
-import { themeTokens } from 'src/styles/theme.css'
 
 export const wrapper = style({
   display: 'flex',
   justifyContent: 'space-between',
   borderRadius: themeTokens.borderRadius.m,
   overflow: 'hidden',
-  backgroundColor: 'gray',
+  backgroundColor: colorTokens.background.button,
 })
 
 export const button = style({
+  flexBasis: '33%',
   padding: themeTokens.space.m,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  color: colorTokens.text.accent,
   border: 'none',
   backgroundColor: 'transparent',
-  flexBasis: '33%',
   outlineColor: 'transparent',
   outlineOffset: '-5px',
 })
 
 export const input = style({
   padding: themeTokens.space.m,
-  border: 'none',
   background: 'transparent',
   minWidth: 0,
   textAlign: 'center',
+  color: colorTokens.text.primary.dark,
+  fontWeight: themeTokens.fontWeight.bold,
+  border: 'none',
   outlineColor: 'transparent',
   outlineOffset: '-5px',
 })
