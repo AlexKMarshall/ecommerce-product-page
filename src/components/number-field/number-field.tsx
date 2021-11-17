@@ -36,11 +36,11 @@ export function NumberField(props: Props): JSX.Element {
   return (
     <div {...groupProps} className={styles.wrapper}>
       <button {...decrementProps} ref={decrementRef} className={styles.button}>
-        <Icon icon="minus" />
+        <Icon icon="minus" size="xs" />
       </button>
       <input {...inputProps} ref={inputRef} className={styles.input} />
       <button {...incrementProps} ref={incrementRef} className={styles.button}>
-        <Icon icon="plus" />
+        <Icon icon="plus" size="xs" />
       </button>
     </div>
   )

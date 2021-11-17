@@ -1,3 +1,5 @@
+import * as styles from './icon.css'
+
 import { Cart, Menu, Minus, Plus } from './icons'
 
 const icons = {
@@ -7,9 +9,18 @@ const icons = {
   plus: Plus,
 }
 
-type Props = { icon: keyof typeof icons }
-export function Icon({ icon }: Props): JSX.Element {
+export type Icon = keyof typeof icons
+
+type Props = {
+  icon: Icon
+  size?: 'xs' | 's' | 'm' | 'l'
+}
+export function Icon({ icon, size: width = 'm' }: Props): JSX.Element {
   const SVGComponent = icons[icon]
 
-  return <SVGComponent />
+  return (
+    <span className={styles.wrapper[width]}>
+      <SVGComponent />
+    </span>
+  )
 }

@@ -1,8 +1,7 @@
 export function Minus(): JSX.Element {
   return (
     <svg
-      width="12"
-      height="4"
+      viewBox="0 0 12 4"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
       fillRule="nonzero"

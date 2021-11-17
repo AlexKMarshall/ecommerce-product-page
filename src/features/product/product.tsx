@@ -58,7 +58,7 @@ export function Product(props: Props): JSX.Element {
                 minValue={0}
                 defaultValue={0}
               />
-              <Button type="submit" onClick={() => {}}>
+              <Button type="submit" onClick={() => {}} icon="cart">
                 Add to cart
               </Button>
             </Stack>

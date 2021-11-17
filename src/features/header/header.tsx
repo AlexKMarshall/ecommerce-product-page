@@ -10,14 +10,14 @@ export function Header(): JSX.Element {
       <Cluster space="xs" justify="space-between">
         <Cluster space="xs">
           <IconButton onClick={() => {}}>
-            <Icon icon="menu" />
+            <Icon icon="menu" size="s" />
           </IconButton>
           <Image src={Logo} alt="Sneakers" />
         </Cluster>
 
         <Cluster space="xs">
           <IconButton onClick={() => {}} color="primary">
-            <Icon icon="cart" />
+            <Icon icon="cart" size="l" />
           </IconButton>
           <IconButton href="/">
             <img src="/image-avatar.png" alt="profile" width="24" height="24" />
