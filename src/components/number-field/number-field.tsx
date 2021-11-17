@@ -1,3 +1,5 @@
+import * as styles from './number-field.css'
+
 import { AllHTMLAttributes, useRef } from 'react'
 
 import { useButton } from '@react-aria/button'
@@ -36,12 +38,12 @@ export function NumberField(props: Props): JSX.Element {
     decrementRef
   )
   return (
-    <div {...groupProps}>
-      <button {...decrementProps} ref={decrementRef}>
+    <div {...groupProps} className={styles.wrapper}>
+      <button {...decrementProps} ref={decrementRef} className={styles.button}>
         -
       </button>
-      <input {...inputProps} ref={inputRef} />
-      <button {...incrementProps} ref={incrementRef}>
+      <input {...inputProps} ref={inputRef} className={styles.input} />
+      <button {...incrementProps} ref={incrementRef} className={styles.button}>
         +
       </button>
     </div>
