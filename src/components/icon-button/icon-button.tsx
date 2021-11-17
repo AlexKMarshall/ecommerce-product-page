@@ -1,10 +1,11 @@
 import * as styles from './icon-button.css'
 
+import { ButtonHTMLAttributes, ReactNode } from 'react'
+
 import Link from 'next/link'
-import { ReactNode } from 'react'
 import { XOR } from 'src/types/utils'
 
-type ButtonProps = {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   onClick: () => void
 }
 
@@ -31,7 +32,7 @@ export function IconButton({
     )
   }
   return (
-    <button className={styles.iconButton({ color })} onClick={props.onClick}>
+    <button className={styles.iconButton({ color })} {...props}>
       {children}
     </button>
   )

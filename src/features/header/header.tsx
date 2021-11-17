@@ -1,5 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { Box, Cluster, Icon, IconButton } from 'src/components'
+import {
+  Box,
+  Cluster,
+  Icon,
+  IconButton,
+  MobileNavigation,
+} from 'src/components'
 
 import Image from 'next/image'
 import Logo from 'public/logo.svg'
@@ -9,9 +15,10 @@ export function Header(): JSX.Element {
     <Box component="header" padding="l">
       <Cluster space="xs" justify="space-between">
         <Cluster space="xs">
-          <IconButton onClick={() => {}}>
+          <MobileNavigation />
+          {/* <IconButton onClick={() => {}}>
             <Icon icon="menu" size="s" />
-          </IconButton>
+          </IconButton> */}
           <Image src={Logo} alt="Sneakers" />
         </Cluster>
 
@@ -19,9 +26,9 @@ export function Header(): JSX.Element {
           <IconButton onClick={() => {}} color="primary">
             <Icon icon="cart" size="l" />
           </IconButton>
-          <IconButton href="/">
+          {/* <IconButton href="/">
             <img src="/image-avatar.png" alt="profile" width="24" height="24" />
-          </IconButton>
+          </IconButton> */}
         </Cluster>
       </Cluster>
     </Box>

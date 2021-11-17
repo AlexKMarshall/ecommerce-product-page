@@ -5,7 +5,7 @@ globalStyle('*, *:after, *:before', {
   margin: 0,
 })
 
-globalStyle(`ul[role='list'], ol[role='list']`, { listStyle: 'none' })
+globalStyle(`ul, ol`, { listStyle: 'none', margin: 0, padding: 0 })
 
 globalStyle('body', {
   minHeight: '100vh',

@@ -36,6 +36,7 @@ export const themeTokens = createGlobalTheme(':root', {
 export const toneTokens = createGlobalTheme(':root', {
   white: 'hsl(0 0% 100%)',
   black: 'hsl(0 0% 0%)',
+  transparentBlack: 'hsl(0 0% 0% / 70%)',
   orange: 'hsl(26 100% 55%)',
   paleOrange: 'hsl(25 100% 94%)',
   darkGrayishBlue: 'hsl(214 9% 45%)',
@@ -50,6 +51,7 @@ export const colorTokens = createGlobalTheme(':root', {
     accent: toneTokens.orange,
     mutedAccent: toneTokens.paleOrange,
     button: toneTokens.lightGrayishBlue,
+    underlay: toneTokens.transparentBlack,
   },
   text: {
     primary: {

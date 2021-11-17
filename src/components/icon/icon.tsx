@@ -1,9 +1,10 @@
 import * as styles from './icon.css'
 
-import { Cart, Menu, Minus, Plus } from './icons'
+import { Cart, Close, Menu, Minus, Plus } from './icons'
 
 const icons = {
   cart: Cart,
+  close: Close,
   menu: Menu,
   minus: Minus,
   plus: Plus,
