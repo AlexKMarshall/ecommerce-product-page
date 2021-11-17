@@ -19,6 +19,7 @@ export const button = recipe({
       accent: {
         backgroundColor: colorTokens.background.accent,
         color: colorTokens.text.primary.light,
+        boxShadow: `0 20px 50px -20px ${colorTokens.background.accent}`,
       },
     },
   },

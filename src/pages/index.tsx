@@ -1,5 +1,6 @@
 import { Header, Product } from 'src/features'
 
+import { Box } from 'src/components'
 import Head from 'next/head'
 import type { NextPage } from 'next'
 
@@ -12,9 +13,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
       <Header />
-      <main>
+      <Box component="main" paddingBottom="2xl">
         <Product />
-      </main>
+      </Box>
     </>
   )
 }
