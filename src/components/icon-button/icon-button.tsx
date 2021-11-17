@@ -14,19 +14,24 @@ type AnchorProps = {
 
 type CommonProps = {
   children: ReactNode
+  color?: 'primary' | 'secondary'
 }
 
 type Props = CommonProps & XOR<ButtonProps, AnchorProps>
-export function IconButton({ children, ...props }: Props): JSX.Element {
+export function IconButton({
+  children,
+  color = 'secondary',
+  ...props
+}: Props): JSX.Element {
   if (props.href) {
     return (
       <Link href={props.href}>
-        <a className={styles.iconButton}>{children}</a>
+        <a className={styles.iconButton({ color })}>{children}</a>
       </Link>
     )
   }
   return (
-    <button className={styles.iconButton} onClick={props.onClick}>
+    <button className={styles.iconButton({ color })} onClick={props.onClick}>
       {children}
     </button>
   )

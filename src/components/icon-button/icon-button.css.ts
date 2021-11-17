@@ -1,7 +1,9 @@
-import { style } from '@vanilla-extract/css'
-import { themeTokens } from 'src/styles/theme.css'
+import { colorTokens, themeTokens } from 'src/styles/theme.css'
 
-export const iconButton = style({
+import { recipe } from '@vanilla-extract/recipes'
+import { style } from '@vanilla-extract/css'
+
+const iconButtonBase = style({
   background: 'none',
   border: 'none',
   display: 'inline-flex',
@@ -14,4 +16,19 @@ export const iconButton = style({
   cursor: 'pointer',
 
   outlineOffset: '4px',
+})
+
+export const iconButton = recipe({
+  base: iconButtonBase,
+
+  variants: {
+    color: {
+      primary: {
+        color: colorTokens.text.primary.dark,
+      },
+      secondary: {
+        color: colorTokens.text.secondary.dark,
+      },
+    },
+  },
 })

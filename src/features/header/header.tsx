@@ -16,7 +16,7 @@ export function Header(): JSX.Element {
         </Cluster>
 
         <Cluster space="xs">
-          <IconButton onClick={() => {}}>
+          <IconButton onClick={() => {}} color="primary">
             <Icon icon="cart" />
           </IconButton>
           <IconButton href="/">
