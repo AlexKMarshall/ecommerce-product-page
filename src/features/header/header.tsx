@@ -16,19 +16,21 @@ export function Header(): JSX.Element {
       <Cluster space="xs" justify="space-between">
         <Cluster space="xs">
           <MobileNavigation />
-          {/* <IconButton onClick={() => {}}>
-            <Icon icon="menu" size="s" />
-          </IconButton> */}
           <Image src={Logo} alt="Sneakers" />
         </Cluster>
 
         <Cluster space="xs">
-          <IconButton onClick={() => {}} color="primary">
+          <IconButton
+            onClick={() => {}}
+            color="primary"
+            badgeValue={3}
+            label="View Shopping Cart"
+          >
             <Icon icon="cart" size="l" />
           </IconButton>
-          {/* <IconButton href="/">
+          <IconButton href="/" label="Profile">
             <img src="/image-avatar.png" alt="profile" width="24" height="24" />
-          </IconButton> */}
+          </IconButton>
         </Cluster>
       </Cluster>
     </Box>

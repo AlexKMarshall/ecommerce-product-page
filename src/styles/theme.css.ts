@@ -12,6 +12,7 @@ export const themeTokens = createGlobalTheme(':root', {
     none: '0px',
   },
   fontSize: {
+    '2xs': '0.6rem',
     xs: '0.75rem',
     s: '1rem',
     m: '1.25rem',
@@ -30,6 +31,7 @@ export const themeTokens = createGlobalTheme(':root', {
     s: '6px',
     m: '10px',
     circle: '50%',
+    pill: '999px',
   },
 })
 

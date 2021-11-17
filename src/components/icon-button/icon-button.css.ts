@@ -14,6 +14,7 @@ const iconButtonBase = style({
   minWidth: '44px',
   borderRadius: themeTokens.borderRadius.circle,
   cursor: 'pointer',
+  position: 'relative',
 
   outlineOffset: '4px',
 })
@@ -31,4 +32,17 @@ export const iconButton = recipe({
       },
     },
   },
+})
+
+export const badge = style({
+  fontSize: themeTokens.fontSize['2xs'],
+  fontWeight: themeTokens.fontWeight.bold,
+  backgroundColor: colorTokens.background.accent,
+  color: colorTokens.text.primary.light,
+  paddingLeft: '0.8em',
+  paddingRight: '0.8em',
+  borderRadius: themeTokens.borderRadius.pill,
+  position: 'absolute',
+  top: '0.5em',
+  right: 0,
 })

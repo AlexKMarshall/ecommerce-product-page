@@ -108,14 +108,10 @@ type NavItemProps = {
 }
 function NavItem({ url, label }: NavItemProps) {
   return (
-    <li>
+    <Text weight="bold" size="m" color="primary" component="li">
       <Link href={url}>
-        <a>
-          <Text weight="bold" size="m" color="primary">
-            {label}
-          </Text>
-        </a>
+        <a>{label}</a>
       </Link>
-    </li>
+    </Text>
   )
 }
