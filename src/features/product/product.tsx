@@ -5,7 +5,6 @@ import {
   Button,
   Cluster,
   NumberField,
-  NumberFieldOld,
   Pill,
   Stack,
   Text,
@@ -81,8 +80,10 @@ export function Product({
           <form onSubmit={(e) => e.preventDefault()}>
             <Stack space="xs">
               <NumberField
+                id="quantity"
+                label="Quantity"
                 aria-label="Quantity"
-                minValue={0}
+                min={0}
                 value={quantitySelected}
                 onChange={setQuantitySelected}
               />

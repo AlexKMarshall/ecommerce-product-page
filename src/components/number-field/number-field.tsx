@@ -1,114 +1,161 @@
 import * as styles from './number-field.css'
 
 import {
-  AllHTMLAttributes,
+  ButtonHTMLAttributes,
   InputHTMLAttributes,
   useEffect,
-  useRef,
+  useMemo,
   useState,
 } from 'react'
 
 import { Icon } from '..'
-import { useButton } from '@react-aria/button'
-import { useLocale } from '@react-aria/i18n'
-import { useNumberField } from '@react-aria/numberfield'
-import { useNumberFieldState } from '@react-stately/numberfield'
 
-type Props = Pick<
-  AllHTMLAttributes<HTMLInputElement>,
-  'aria-label' | 'aria-labelledby'
-> & {
-  label?: string | JSX.Element
-  minValue?: number
+type Props = {
+  label: string
+  id: string
   defaultValue?: number
+  min?: number
+  max?: number
   value?: number
   onChange?: (value: number) => void
 }
-export function NumberFieldOld(props: Props): JSX.Element {
-  const { locale } = useLocale()
-  const state = useNumberFieldState({ ...props, locale })
-  const inputRef = useRef<HTMLInputElement>(null)
-  const incrementRef = useRef<HTMLButtonElement>(null)
-  const decrementRef = useRef<HTMLButtonElement>(null)
-  const { groupProps, inputProps, incrementButtonProps, decrementButtonProps } =
-    useNumberField(props, state, inputRef)
-
-  const { buttonProps: incrementProps } = useButton(
-    incrementButtonProps,
-    incrementRef
-  )
-  const { buttonProps: decrementProps } = useButton(
-    decrementButtonProps,
-    decrementRef
-  )
-  console.log({ decrementProps, inputProps, incrementProps })
+export function NumberField({
+  defaultValue = 0,
+  label,
+  min,
+  max,
+  id,
+  value,
+  onChange,
+}: Props): JSX.Element {
+  const { inputProps, increaseButtonProps, decreaseButtonProps } =
+    useNumberField({
+      defaultValue,
+      label,
+      min,
+      max,
+      id,
+      value,
+      onChange,
+    })
 
   return (
-    <div {...groupProps} className={styles.wrapper}>
-      <button {...decrementProps} ref={decrementRef} className={styles.button}>
+    <div className={styles.wrapper}>
+      <button className={styles.button} {...decreaseButtonProps}>
         <Icon icon="minus" size="xs" />
       </button>
-      <input {...inputProps} ref={inputRef} className={styles.input} />
-      <button {...incrementProps} ref={incrementRef} className={styles.button}>
+      <input className={styles.input} {...inputProps} />
+      <button className={styles.button} {...increaseButtonProps}>
         <Icon icon="plus" size="xs" />
       </button>
     </div>
   )
 }
 
-type NumberFieldProps = {
-  label: string
-  defaultValue?: number
+function clamp(
+  value: number,
+  { min, max }: { min?: number; max?: number } = {}
+): number {
+  let clampedValue = value
+  if (min !== undefined && value < min) {
+    clampedValue = min
+  }
+  if (max !== undefined && value > max) {
+    clampedValue = max
+  }
+  return clampedValue
 }
-export function NumberField({
+
+function validateInput(input: string): boolean {
+  // for now only checking if there is anything other than a digit
+  // this could check for decimals etc later
+  return input.match(/\D/) ? false : true
+}
+
+type UseNumberFieldProps = {
+  label: string
+  id: string
+  defaultValue?: number
+  min?: number
+  max?: number
+  value?: number
+  onChange?: (value: number) => void
+}
+function useNumberField({
   defaultValue = 0,
   label,
-}: NumberFieldProps): JSX.Element {
-  const [numericValue, setNumericValue] = useState(defaultValue)
+  min,
+  max,
+  id,
+  value: controlledNumericValue,
+  onChange,
+}: UseNumberFieldProps) {
+  const [uncontrolledNumericValue, setNumericValue] = useState(
+    controlledNumericValue ?? defaultValue
+  )
+  const isControlled = controlledNumericValue !== undefined
+  const numericValue = isControlled
+    ? controlledNumericValue
+    : uncontrolledNumericValue
+
   const [inputValue, setInputValue] = useState(() => numericValue.toString())
-  const increment = () => setNumericValue((value) => value + 1)
-  const decrement = () => setNumericValue((value) => value - 1)
-  const commit = () => {
-    if (!inputValue.length) {
-      setNumericValue(NaN)
-      return
+  const updateInput = (value: string) => {
+    const isValid = validateInput(value)
+    if (isValid) {
+      setInputValue(value)
     }
-    setNumericValue(parseInt(inputValue))
   }
 
   useEffect(() => {
     setInputValue(numericValue.toString())
   }, [numericValue])
 
-  const inputProps: Partial<InputHTMLAttributes<HTMLInputElement>> = {
-    type: 'text',
-    inputMode: 'numeric' as const,
-    autoComplete: 'off',
-    autoCorrect: 'off',
-    value: inputValue,
-    onChange: (e) => setInputValue(e.currentTarget.value),
-    onBlur: () => commit(),
-    'aria-label': label,
-  }
+  return useMemo(() => {
+    const updateNumericValue = (
+      value: number | ((value: number) => number)
+    ) => {
+      const newValue = typeof value === 'function' ? value(numericValue) : value
+      const clampedNewValue = clamp(newValue, { min, max })
+      setNumericValue(clampedNewValue)
+      onChange?.(clampedNewValue)
+    }
 
-  const decrementButtonProps = {
-    onClick: decrement,
-    'aria-label': `Decrement ${label}`,
-  }
-  const incrementButtonProps = {
-    onClick: increment,
-    'aria-label': `Increment ${label}`,
-  }
+    const increment = () => updateNumericValue((value) => value + 1)
+    const decrement = () => updateNumericValue((value) => value - 1)
+    const commit = () => {
+      if (!inputValue.length) {
+        updateNumericValue(NaN)
+        return
+      }
+      updateNumericValue(parseInt(inputValue))
+    }
 
-  return (
-    <div className={styles.wrapper}>
-      <button className={styles.button} {...decrementButtonProps}>
-        <Icon icon="minus" size="xs" />
-      </button>
-      <input className={styles.input} {...inputProps} />
-      <button className={styles.button} {...incrementButtonProps}>
-        <Icon icon="plus" size="xs" />
-      </button>
-    </div>
-  )
+    const inputProps: Partial<InputHTMLAttributes<HTMLInputElement>> = {
+      type: 'text',
+      inputMode: 'numeric' as const,
+      autoComplete: 'off',
+      autoCorrect: 'off',
+      value: inputValue,
+      onChange: (e) => updateInput(e.currentTarget.value),
+      onBlur: () => commit(),
+      'aria-label': label,
+    }
+
+    const decreaseButtonProps: Partial<
+      ButtonHTMLAttributes<HTMLButtonElement>
+    > = {
+      onClick: decrement,
+      'aria-label': `Decrease ${label}`,
+      'aria-controls': id,
+    }
+    const increaseButtonProps: Partial<
+      ButtonHTMLAttributes<HTMLButtonElement>
+    > = {
+      onClick: increment,
+      'aria-label': `Increase ${label}`,
+      'aria-controls': id,
+    }
+
+    return { increaseButtonProps, decreaseButtonProps, inputProps }
+  }, [id, inputValue, label, max, min, numericValue, onChange])
 }
