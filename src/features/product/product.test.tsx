@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
+import { CartProvider } from '..'
 import { Product } from '.'
 import userEvent from '@testing-library/user-event'
 
@@ -17,7 +18,11 @@ test('displays product information', () => {
     oldPrice: 250,
   }
 
-  render(<Product {...product} />)
+  render(
+    <CartProvider>
+      <Product {...product} />
+    </CartProvider>
+  )
 
   expect(
     screen.getByRole('link', { name: product.brand.name })

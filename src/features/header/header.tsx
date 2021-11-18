@@ -23,7 +23,6 @@ export function Header(): JSX.Element {
           <IconButton
             onClick={() => {}}
             color="primary"
-            badgeValue={3}
             label="View Shopping Cart"
           >
             <Icon icon="cart" size="l" />

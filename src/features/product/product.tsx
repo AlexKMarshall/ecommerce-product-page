@@ -5,6 +5,7 @@ import {
   Button,
   Cluster,
   NumberField,
+  NumberFieldOld,
   Pill,
   Stack,
   Text,
@@ -13,6 +14,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import productImage1 from 'public/image-product-1.jpg'
+import { useState } from 'react'
 
 type Props = {
   brand: {
@@ -40,6 +42,8 @@ export function Product({
   const price = priceFormatter.format(priceProp)
   const discountPercent = discountPercentProp ? `${discountPercentProp}%` : null
   const oldPrice = oldPriceProp ? priceFormatter.format(oldPriceProp) : null
+
+  const [quantitySelected, setQuantitySelected] = useState(0)
 
   return (
     <>
@@ -79,7 +83,8 @@ export function Product({
               <NumberField
                 aria-label="Quantity"
                 minValue={0}
-                defaultValue={0}
+                value={quantitySelected}
+                onChange={setQuantitySelected}
               />
               <Button type="submit" onClick={() => {}} icon="cart">
                 Add to cart
