@@ -1,5 +1,6 @@
 import * as styles from './cart.css'
 
+import { Button, Stack, Text } from 'src/components'
 import { Icon, IconButton } from 'src/components'
 import {
   OverlayContainer,
@@ -9,7 +10,6 @@ import {
   usePreventScroll,
 } from '@react-aria/overlays'
 import { ReactNode, createContext, useContext, useMemo, useState } from 'react'
-import { Stack, Text } from 'src/components'
 
 import { FocusScope } from '@react-aria/focus'
 import Link from 'next/link'
@@ -108,16 +108,47 @@ export function Cart(props: Props): JSX.Element {
         <OverlayContainer>
           <Dialog title="Cart" isOpen isDismissable onClose={state.close}>
             <div className={styles.cartContents}>
-              {items.length > 0 ? null : (
-                <Text weight="bold" alignSelf="center">
-                  Your cart is empty.
-                </Text>
-              )}
+              <CartContents />
             </div>
           </Dialog>
         </OverlayContainer>
       ) : null}
     </>
+  )
+}
+
+function CartContents(): JSX.Element {
+  const { items, removeItem } = useCart()
+  const priceFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
+
+  if (items.length < 1) {
+    return (
+      <Text weight="bold" alignSelf="center">
+        Your cart is empty.
+      </Text>
+    )
+  }
+
+  return (
+    <Stack space="m">
+      <Stack space="s">
+        {items.map((item) => (
+          <li key={item.product.name}>
+            <Text>{item.product.name}</Text>
+            <Text>{`${priceFormatter.format(item.product.price)} x ${
+              item.quantity
+            }`}</Text>
+            <Text>
+              {priceFormatter.format(item.product.price * item.quantity)}
+            </Text>
+          </li>
+        ))}
+      </Stack>
+      <Button onClick={() => {}}>Checkout</Button>
+    </Stack>
   )
 }
 
