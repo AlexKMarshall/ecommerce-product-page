@@ -48,7 +48,9 @@ export function CartProvider({
           oldItems.filter((oldItem) => oldItem.product.name !== name)
         )
       },
-      totalQuantity: items.length,
+      totalQuantity: items
+        .map((item) => item.quantity)
+        .reduce((acc, cur) => acc + cur, 0),
     }),
     [items]
   )

@@ -13,6 +13,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import productImage1 from 'public/image-product-1.jpg'
+import { useCart } from '..'
 import { useState } from 'react'
 
 type Props = {
@@ -42,7 +43,11 @@ export function Product({
   const discountPercent = discountPercentProp ? `${discountPercentProp}%` : null
   const oldPrice = oldPriceProp ? priceFormatter.format(oldPriceProp) : null
 
-  const [quantitySelected, setQuantitySelected] = useState(0)
+  const [quantitySelected, setQuantitySelected] = useState(1)
+  const { addItem } = useCart()
+
+  const addToCart = () =>
+    addItem({ product: { name, price: priceProp }, quantity: quantitySelected })
 
   return (
     <>
@@ -83,11 +88,11 @@ export function Product({
                 id="quantity"
                 label="Quantity"
                 aria-label="Quantity"
-                min={0}
+                min={1}
                 value={quantitySelected}
                 onChange={setQuantitySelected}
               />
-              <Button type="submit" onClick={() => {}} icon="cart">
+              <Button type="submit" onClick={addToCart} icon="cart">
                 Add to cart
               </Button>
             </Stack>

@@ -45,7 +45,7 @@ test('displays product information', () => {
   expect(screen.getByText(`${product.discountPercent}%`)).toBeInTheDocument()
 
   const quantityField = screen.getByLabelText('Quantity')
-  expect(quantityField).toHaveValue('0')
+  expect(quantityField).toHaveValue('1')
 
   const increaseQty = screen.getByRole('button', {
     name: /increase quantity/i,
@@ -55,13 +55,13 @@ test('displays product information', () => {
   })
 
   userEvent.click(decreaseQty)
-  expect(quantityField).toHaveValue('0')
-  userEvent.click(increaseQty)
   expect(quantityField).toHaveValue('1')
   userEvent.click(increaseQty)
   expect(quantityField).toHaveValue('2')
+  userEvent.click(increaseQty)
+  expect(quantityField).toHaveValue('3')
   userEvent.click(decreaseQty)
-  expect(quantityField).toHaveValue('1')
+  expect(quantityField).toHaveValue('2')
 
   expect(
     screen.getByRole('button', { name: /add to cart/i })
