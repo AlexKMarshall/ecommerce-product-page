@@ -3,6 +3,7 @@ import * as styles from './number-field.css'
 import {
   ButtonHTMLAttributes,
   InputHTMLAttributes,
+  useCallback,
   useEffect,
   useMemo,
   useState,
@@ -72,6 +73,31 @@ function validateInput(input: string): boolean {
   return input.match(/\D/) ? false : true
 }
 
+// Can't get generics to work yet with the function styles updater
+function useControlledNumericState(
+  controlledValue: number | undefined,
+  defaultValue: number,
+  onChange?: (value: number) => void
+) {
+  const [uncontrolledValue, setUncontrolledValue] =
+    useState<number>(defaultValue)
+  const isControlled = controlledValue !== undefined
+  const value = isControlled ? controlledValue : uncontrolledValue
+
+  const setValue = useCallback(
+    (updater: number | ((value: number) => number)) => {
+      const newValue = typeof updater === 'function' ? updater(value) : updater
+      if (!isControlled) {
+        setUncontrolledValue(newValue)
+      }
+      onChange?.(newValue)
+    },
+    [isControlled, onChange, value]
+  )
+
+  return [value, setValue] as const
+}
+
 type UseNumberFieldProps = {
   label: string
   id: string
@@ -90,13 +116,11 @@ function useNumberField({
   value: controlledNumericValue,
   onChange,
 }: UseNumberFieldProps) {
-  const [uncontrolledNumericValue, setNumericValue] = useState(
-    controlledNumericValue ?? defaultValue
+  const [numericValue, setNumericValue] = useControlledNumericState(
+    controlledNumericValue,
+    defaultValue,
+    onChange
   )
-  const isControlled = controlledNumericValue !== undefined
-  const numericValue = isControlled
-    ? controlledNumericValue
-    : uncontrolledNumericValue
 
   const [inputValue, setInputValue] = useState(() => numericValue.toString())
   const updateInput = (value: string) => {
@@ -117,7 +141,6 @@ function useNumberField({
       const newValue = typeof value === 'function' ? value(numericValue) : value
       const clampedNewValue = clamp(newValue, { min, max })
       setNumericValue(clampedNewValue)
-      onChange?.(clampedNewValue)
     }
 
     const increment = () => updateNumericValue((value) => value + 1)
