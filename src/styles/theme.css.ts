@@ -9,6 +9,7 @@ export const themeTokens = createGlobalTheme(':root', {
     l: '1.5rem',
     xl: '2rem',
     '2xl': '4rem',
+    '3xl': '6rem',
     none: '0px',
   },
   fontSize: {

@@ -9,6 +9,7 @@ type Props = {
   size?: BoxProps['fontSize']
   weight?: BoxProps['fontWeight']
   inline?: boolean
+  alignSelf?: BoxProps['alignSelf']
   color?: 'primary' | 'secondary' | 'muted'
 }
 export function Text({
@@ -17,6 +18,7 @@ export function Text({
   size,
   weight,
   inline,
+  alignSelf,
   color,
 }: Props): JSX.Element {
   const colorClassName = color ? styles.color({ color }) : ''
@@ -26,6 +28,7 @@ export function Text({
       fontSize={size}
       fontWeight={weight}
       {...(inline && { display: 'inline' })}
+      alignSelf={alignSelf}
       className={colorClassName}
     >
       {children}

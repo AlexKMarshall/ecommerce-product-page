@@ -80,7 +80,7 @@ export function MobileNavigation() {
       </IconButton>
       {state.isOpen ? (
         <OverlayContainer>
-          <Dialog title="Hello" isOpen isDismissable onClose={state.close}>
+          <Dialog title="Navigation" isOpen isDismissable onClose={state.close}>
             <Stack space="xl" align="flex-start">
               <IconButton {...closeButtonProps}>
                 <Icon icon="close" size="s" />
