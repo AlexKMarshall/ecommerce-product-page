@@ -13,6 +13,10 @@ export const button = recipe({
     borderRadius: themeTokens.borderRadius.m,
     fontWeight: themeTokens.fontWeight.bold,
     fontSize: themeTokens.fontSize.m,
+
+    ':active': {
+      filter: 'brightness(0.8)',
+    },
   },
 
   variants: {

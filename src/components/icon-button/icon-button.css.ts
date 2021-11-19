@@ -13,10 +13,13 @@ const iconButtonBase = style({
   minHeight: '44px',
   minWidth: '44px',
   borderRadius: themeTokens.borderRadius.circle,
-  cursor: 'pointer',
   position: 'relative',
 
   outlineOffset: '4px',
+
+  ':active': {
+    filter: 'brightness(0.8)',
+  },
 })
 
 export const iconButton = recipe({
