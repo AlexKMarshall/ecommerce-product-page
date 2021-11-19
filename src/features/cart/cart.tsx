@@ -147,8 +147,8 @@ function CartItem({ item }: CartItemProps): JSX.Element {
   const totalPrice = priceFormatter.format(item.product.price * item.quantity)
 
   return (
-    <Cluster component="li" justify="space-between" noWrap>
-      <Cluster noWrap>
+    <Cluster component="li" justify="space-between" wrap={false}>
+      <Cluster wrap={false}>
         <Thumbnail src={item.product.thumbnail} alt="" />
         <Stack space="none">
           <Text>{item.product.name}</Text>

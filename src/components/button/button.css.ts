@@ -12,6 +12,7 @@ export const button = recipe({
     border: 'none',
     borderRadius: themeTokens.borderRadius.m,
     fontWeight: themeTokens.fontWeight.bold,
+    fontSize: themeTokens.fontSize.m,
   },
 
   variants: {

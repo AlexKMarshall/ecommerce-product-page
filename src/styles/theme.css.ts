@@ -40,11 +40,13 @@ export const toneTokens = createGlobalTheme(':root', {
   white: 'hsl(0 0% 100%)',
   black: 'hsl(0 0% 0%)',
   transparentBlack: 'hsl(0 0% 0% / 70%)',
-  orange: 'hsl(26 100% 55%)',
+  orange: 'hsl(26 100% 48%)',
+  veryDarkOrange: 'hsl(26 100% 33%)',
+  darkOrange: 'hsl(26 100% 38%)',
   paleOrange: 'hsl(25 100% 94%)',
-  darkGrayishBlue: 'hsl(214 9% 45%)',
+  darkGrayishBlue: 'hsl(214 9% 38%)',
   veryDarkBlue: 'hsl(220 13% 13%)',
-  grayishBlue: 'hsl(220 14% 75%)',
+  grayishBlue: 'hsl(220 14% 48%)',
   lightGrayishBlue: 'hsl(223 64% 98%)',
 })
 
@@ -67,6 +69,6 @@ export const colorTokens = createGlobalTheme(':root', {
     muted: {
       dark: toneTokens.grayishBlue,
     },
-    accent: toneTokens.orange,
+    accent: toneTokens.darkOrange,
   },
 })
