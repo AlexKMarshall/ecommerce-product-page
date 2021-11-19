@@ -141,6 +141,7 @@ function useNumberField({
     }
 
     const inputProps: Partial<InputHTMLAttributes<HTMLInputElement>> = {
+      id,
       type: 'text',
       inputMode: 'numeric' as const,
       autoComplete: 'off',

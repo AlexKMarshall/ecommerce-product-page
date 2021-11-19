@@ -23,7 +23,7 @@ export function Header(): JSX.Element {
         <Cluster space="xs">
           <Cart />
           <IconButton href="/" label="Profile">
-            <img src="/image-avatar.png" alt="profile" width="24" height="24" />
+            <img src="/image-avatar.png" alt="" width="24" height="24" />
           </IconButton>
         </Cluster>
       </Cluster>

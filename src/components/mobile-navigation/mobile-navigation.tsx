@@ -75,7 +75,7 @@ export function MobileNavigation() {
   )
   return (
     <>
-      <IconButton {...openButtonProps}>
+      <IconButton {...openButtonProps} label="Open Navigation Menu">
         <Icon icon="menu" size="s" />
       </IconButton>
       {state.isOpen ? (
