@@ -10,6 +10,7 @@ const properties = defineProperties({
     justifyContent: ['flex-start', 'center', 'flex-end', 'space-between'],
     alignItems: ['stretch', 'center', 'baseline', 'flex-start'],
     alignSelf: ['center'],
+    flexWrap: ['wrap', 'nowrap'],
     fontSize: themeTokens.fontSize,
     fontWeight: themeTokens.fontWeight,
     display: ['block', 'inline'],

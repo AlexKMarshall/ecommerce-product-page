@@ -13,6 +13,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import productImage1 from 'public/image-product-1.jpg'
+import productThumbnail1 from 'public/image-product-1-thumbnail.jpg'
 import { useCart } from '..'
 import { useState } from 'react'
 
@@ -47,7 +48,14 @@ export function Product({
   const { addItem } = useCart()
 
   const addToCart = () =>
-    addItem({ product: { name, price: priceProp }, quantity: quantitySelected })
+    addItem({
+      product: {
+        name,
+        price: priceProp,
+        thumbnail: '/image-product-1-thumbnail.jpg',
+      },
+      quantity: quantitySelected,
+    })
 
   return (
     <>

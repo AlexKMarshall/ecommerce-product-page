@@ -19,7 +19,7 @@ export const underlay = style({
 export const overlay = style({
   background: colorTokens.background.body,
   borderRadius: themeTokens.borderRadius.m,
-  minHeight: '33vh',
+  // minHeight: '33vh',
   display: 'flex',
   flexDirection: 'column',
 })

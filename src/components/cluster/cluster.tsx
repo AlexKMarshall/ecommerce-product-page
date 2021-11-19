@@ -10,12 +10,14 @@ type Props = {
   justify?: BoxProps['justifyContent']
   align?: BoxProps['alignItems']
   component?: BoxProps['component']
+  noWrap?: true
 }
 export function Cluster({
   children,
   space = 's',
   justify,
   align = 'center',
+  noWrap,
   component,
 }: Props): JSX.Element {
   return (
@@ -25,6 +27,7 @@ export function Cluster({
       justifyContent={justify}
       alignItems={align}
       component={component}
+      {...(noWrap && { flexWrap: 'nowrap' })}
     >
       {children}
     </Box>

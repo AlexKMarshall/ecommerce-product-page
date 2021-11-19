@@ -22,13 +22,6 @@ export function Header(): JSX.Element {
 
         <Cluster space="xs">
           <Cart />
-          {/* <IconButton
-            onClick={() => {}}
-            color="primary"
-            label="View Shopping Cart"
-          >
-            <Icon icon="cart" size="l" />
-          </IconButton> */}
           <IconButton href="/" label="Profile">
             <img src="/image-avatar.png" alt="profile" width="24" height="24" />
           </IconButton>

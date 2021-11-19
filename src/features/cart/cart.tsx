@@ -12,13 +12,13 @@ import {
 import { ReactNode, createContext, useContext, useMemo, useState } from 'react'
 
 import { FocusScope } from '@react-aria/focus'
-import Link from 'next/link'
+import Image from 'next/image'
 import { useButton } from '@react-aria/button'
 import { useDialog } from '@react-aria/dialog'
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { useRef } from 'react'
 
-type Product = { name: string; price: number }
+type Product = { name: string; price: number; thumbnail: string }
 type ProductInCart = { product: Product; quantity: number }
 type CartContext = {
   items: ProductInCart[]
@@ -140,18 +140,27 @@ function CartContents(): JSX.Element {
             component="li"
             key={item.product.name}
             justify="space-between"
+            noWrap
           >
-            <Stack space="none">
-              <Text>{item.product.name}</Text>
-              <Cluster space="2xs">
-                <Text>{`${priceFormatter.format(item.product.price)} x ${
-                  item.quantity
-                }`}</Text>
-                <Text color="primary" weight="bold">
-                  {priceFormatter.format(item.product.price * item.quantity)}
-                </Text>
-              </Cluster>
-            </Stack>
+            <Cluster noWrap>
+              <Image
+                src={item.product.thumbnail}
+                height={50}
+                width={50}
+                alt=""
+              />
+              <Stack space="none">
+                <Text>{item.product.name}</Text>
+                <Cluster space="2xs">
+                  <Text>{`${priceFormatter.format(item.product.price)} x ${
+                    item.quantity
+                  }`}</Text>
+                  <Text color="primary" weight="bold">
+                    {priceFormatter.format(item.product.price * item.quantity)}
+                  </Text>
+                </Cluster>
+              </Stack>
+            </Cluster>
             <IconButton
               onClick={() => {
                 removeItem(item.product.name)
