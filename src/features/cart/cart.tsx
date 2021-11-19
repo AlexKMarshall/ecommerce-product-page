@@ -1,6 +1,6 @@
 import * as styles from './cart.css'
 
-import { Button, Cluster, Stack, Text } from 'src/components'
+import { Button, Cluster, Stack, Text, Thumbnail } from 'src/components'
 import { Icon, IconButton } from 'src/components'
 import {
   OverlayContainer,
@@ -143,12 +143,7 @@ function CartContents(): JSX.Element {
             noWrap
           >
             <Cluster noWrap>
-              <Image
-                src={item.product.thumbnail}
-                height={50}
-                width={50}
-                alt=""
-              />
+              <Thumbnail src={item.product.thumbnail} alt="" />
               <Stack space="none">
                 <Text>{item.product.name}</Text>
                 <Cluster space="2xs">
