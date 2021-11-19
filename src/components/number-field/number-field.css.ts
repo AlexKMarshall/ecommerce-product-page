@@ -21,6 +21,10 @@ export const button = style({
   backgroundColor: 'transparent',
   outlineColor: 'transparent',
   outlineOffset: '-5px',
+
+  ':active': {
+    filter: 'brightness(0.8)',
+  },
 })
 
 export const input = style({
