@@ -30,6 +30,9 @@ export const iconButton = recipe({
       secondary: {
         color: colorTokens.text.secondary.dark,
       },
+      muted: {
+        color: colorTokens.text.muted.dark,
+      },
     },
   },
 })

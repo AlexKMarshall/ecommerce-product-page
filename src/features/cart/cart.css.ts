@@ -32,6 +32,7 @@ export const cartHeader = style({
 export const cartContents = style({
   padding: themeTokens.space.m,
   display: 'flex',
+  flexDirection: 'column',
   flexGrow: 1,
   justifyContent: 'center',
 })

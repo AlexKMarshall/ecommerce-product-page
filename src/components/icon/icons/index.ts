@@ -1,5 +1,6 @@
 export * from './cart'
 export * from './close'
+export * from './delete'
 export * from './menu'
 export * from './minus'
 export * from './plus'

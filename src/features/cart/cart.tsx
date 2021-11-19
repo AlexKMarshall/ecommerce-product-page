@@ -1,6 +1,6 @@
 import * as styles from './cart.css'
 
-import { Button, Stack, Text } from 'src/components'
+import { Button, Cluster, Stack, Text } from 'src/components'
 import { Icon, IconButton } from 'src/components'
 import {
   OverlayContainer,
@@ -134,17 +134,34 @@ function CartContents(): JSX.Element {
 
   return (
     <Stack space="m">
-      <Stack space="s">
+      <Stack space="s" component="ul">
         {items.map((item) => (
-          <li key={item.product.name}>
-            <Text>{item.product.name}</Text>
-            <Text>{`${priceFormatter.format(item.product.price)} x ${
-              item.quantity
-            }`}</Text>
-            <Text>
-              {priceFormatter.format(item.product.price * item.quantity)}
-            </Text>
-          </li>
+          <Cluster
+            component="li"
+            key={item.product.name}
+            justify="space-between"
+          >
+            <Stack space="none">
+              <Text>{item.product.name}</Text>
+              <Cluster space="2xs">
+                <Text>{`${priceFormatter.format(item.product.price)} x ${
+                  item.quantity
+                }`}</Text>
+                <Text color="primary" weight="bold">
+                  {priceFormatter.format(item.product.price * item.quantity)}
+                </Text>
+              </Cluster>
+            </Stack>
+            <IconButton
+              onClick={() => {
+                removeItem(item.product.name)
+              }}
+              label={`Remove ${item.product.name} from cart`}
+              color="muted"
+            >
+              <Icon icon="delete" size="s" />
+            </IconButton>
+          </Cluster>
         ))}
       </Stack>
       <Button onClick={() => {}}>Checkout</Button>

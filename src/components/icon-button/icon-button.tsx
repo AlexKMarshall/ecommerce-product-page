@@ -18,7 +18,7 @@ type CommonProps = {
   children: ReactNode
   label: string
   badgeValue?: number
-  color?: 'primary' | 'secondary'
+  color?: 'primary' | 'secondary' | 'muted'
 }
 
 type Props = CommonProps & XOR<ButtonProps, AnchorProps>
