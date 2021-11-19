@@ -33,21 +33,24 @@ function useCarousel<T>(items: T[]) {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const firstIndex = 0
   const lastIndex = items.length - 1
-  const prevIndex =
+  const previousIndex =
     selectedIndex - 1 < firstIndex ? lastIndex : selectedIndex - 1
   const nextIndex =
     selectedIndex + 1 > lastIndex ? firstIndex : selectedIndex + 1
   return useMemo(
     () => ({
-      selectPrevious: () => setSelectedIndex(prevIndex),
+      selectPrevious: () => setSelectedIndex(previousIndex),
       selectNext: () => setSelectedIndex(nextIndex),
       selectIndex: (index: number) =>
         setSelectedIndex(clamp(index, { min: firstIndex, max: lastIndex })),
       selectedItem: items[selectedIndex],
-      previousItem: items[prevIndex],
+      previousItem: items[previousIndex],
       nextItem: items[nextIndex],
+      selectedIndex,
+      nextIndex,
+      previousIndex,
     }),
-    [items, lastIndex, nextIndex, prevIndex, selectedIndex]
+    [items, lastIndex, nextIndex, previousIndex, selectedIndex]
   )
 }
 
@@ -99,20 +102,20 @@ export function Product({
         <Image
           src={carousel.previousItem}
           alt=""
-          key={carousel.previousItem.src}
+          key={carousel.previousIndex}
           className={styles.carouselImage({ position: 'previous' })}
         />
         <Image
           src={carousel.selectedItem}
           alt=""
           priority
-          key={carousel.selectedItem.src}
+          key={carousel.selectedIndex}
           className={styles.carouselImage({ position: 'current' })}
         />
         <Image
           src={carousel.nextItem}
           alt=""
-          key={carousel.nextItem.src}
+          key={carousel.nextIndex}
           className={styles.carouselImage({ position: 'next' })}
         />
         <Box padding="m" display="grid">

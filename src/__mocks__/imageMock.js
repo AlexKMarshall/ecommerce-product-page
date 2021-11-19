@@ -1,5 +1,5 @@
 module.exports = {
-  src: '/test-file-stup',
+  src: `/image-file-path`,
   width: 100,
   height: 100,
 }
