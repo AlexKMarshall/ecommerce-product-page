@@ -4,7 +4,7 @@ import { recipe } from '@vanilla-extract/recipes'
 import { style } from '@vanilla-extract/css'
 
 const iconButtonBase = style({
-  background: 'none',
+  background: colorTokens.background.body,
   border: 'none',
   display: 'inline-flex',
   justifyContent: 'center',

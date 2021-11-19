@@ -4,18 +4,52 @@ import {
   Box,
   Button,
   Cluster,
+  Icon,
+  IconButton,
   NumberField,
   Pill,
   Stack,
   Text,
 } from 'src/components'
+import { useMemo, useState } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { clamp } from 'src/utils/clamp'
 import productImage1 from 'public/image-product-1.jpg'
-import productThumbnail1 from 'public/image-product-1-thumbnail.jpg'
+import productImage2 from 'public/image-product-2.jpg'
+import productImage3 from 'public/image-product-3.jpg'
+import productImage4 from 'public/image-product-4.jpg'
 import { useCart } from '..'
-import { useState } from 'react'
+
+const productImages = [
+  productImage1,
+  productImage2,
+  productImage3,
+  productImage4,
+]
+
+function useCarousel<T>(items: T[]) {
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const firstIndex = 0
+  const lastIndex = items.length - 1
+  const prevIndex =
+    selectedIndex - 1 < firstIndex ? lastIndex : selectedIndex - 1
+  const nextIndex =
+    selectedIndex + 1 > lastIndex ? firstIndex : selectedIndex + 1
+  return useMemo(
+    () => ({
+      selectPrevious: () => setSelectedIndex(prevIndex),
+      selectNext: () => setSelectedIndex(nextIndex),
+      selectIndex: (index: number) =>
+        setSelectedIndex(clamp(index, { min: firstIndex, max: lastIndex })),
+      selectedItem: items[selectedIndex],
+      previousItem: items[prevIndex],
+      nextItem: items[nextIndex],
+    }),
+    [items, lastIndex, nextIndex, prevIndex, selectedIndex]
+  )
+}
 
 type Props = {
   brand: {
@@ -57,14 +91,34 @@ export function Product({
       quantity: quantitySelected,
     })
 
+  const carousel = useCarousel(productImages)
+
   return (
     <>
-      <Box>
+      <Box className={styles.imageSlider}>
         <Image
-          src={productImage1}
+          src={carousel.selectedItem}
           alt="tan and white sneakers on orange background"
           priority
         />
+        <Box padding="m" display="grid">
+          <Cluster justify="space-between">
+            <IconButton
+              label="Previous Image"
+              color="primary"
+              onClick={carousel.selectPrevious}
+            >
+              <Icon icon="previous" size="xs" />
+            </IconButton>
+            <IconButton
+              label="Next Image"
+              color="primary"
+              onClick={carousel.selectNext}
+            >
+              <Icon icon="next" size="xs" />
+            </IconButton>
+          </Cluster>
+        </Box>
       </Box>
       <Box padding="l">
         <Stack space="xl">

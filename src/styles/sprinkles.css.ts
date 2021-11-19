@@ -13,7 +13,7 @@ const properties = defineProperties({
     flexWrap: ['wrap', 'nowrap'],
     fontSize: themeTokens.fontSize,
     fontWeight: themeTokens.fontWeight,
-    display: ['block', 'inline'],
+    display: ['block', 'inline', 'grid'],
   },
 })
 

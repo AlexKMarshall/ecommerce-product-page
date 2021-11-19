@@ -1,6 +1,5 @@
 import { colorTokens, themeTokens } from 'src/styles/theme.css'
-
-import { style } from '@vanilla-extract/css'
+import { globalStyle, style } from '@vanilla-extract/css'
 
 export const brand = style({
   color: colorTokens.text.accent,
@@ -8,4 +7,13 @@ export const brand = style({
   fontSize: themeTokens.fontSize.xs,
   fontWeight: themeTokens.fontWeight.bold,
   letterSpacing: themeTokens.letterSpacing.wide,
+})
+
+export const imageSlider = style({
+  display: 'grid',
+  gridTemplateAreas: 'stack',
+})
+
+globalStyle(`${imageSlider} > * `, {
+  gridArea: 'stack',
 })

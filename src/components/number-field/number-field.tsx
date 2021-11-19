@@ -10,6 +10,7 @@ import {
 } from 'react'
 
 import { Icon } from '..'
+import { clamp } from 'src/utils/clamp'
 
 type Props = {
   label: string
@@ -51,20 +52,6 @@ export function NumberField({
       </button>
     </div>
   )
-}
-
-function clamp(
-  value: number,
-  { min, max }: { min?: number; max?: number } = {}
-): number {
-  let clampedValue = value
-  if (min !== undefined && value < min) {
-    clampedValue = min
-  }
-  if (max !== undefined && value > max) {
-    clampedValue = max
-  }
-  return clampedValue
 }
 
 function validateInput(input: string): boolean {
@@ -180,5 +167,5 @@ function useNumberField({
     }
 
     return { increaseButtonProps, decreaseButtonProps, inputProps }
-  }, [id, inputValue, label, max, min, numericValue, onChange])
+  }, [id, inputValue, label, max, min, numericValue, setNumericValue])
 }

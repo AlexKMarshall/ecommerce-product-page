@@ -4,7 +4,6 @@ import { Button, Cluster, Stack, Text, Thumbnail } from 'src/components'
 import { Icon, IconButton } from 'src/components'
 import {
   OverlayContainer,
-  OverlayProvider,
   useModal,
   useOverlay,
   usePreventScroll,
@@ -12,7 +11,6 @@ import {
 import { ReactNode, createContext, useContext, useMemo, useState } from 'react'
 
 import { FocusScope } from '@react-aria/focus'
-import Image from 'next/image'
 import { useButton } from '@react-aria/button'
 import { useDialog } from '@react-aria/dialog'
 import { useOverlayTriggerState } from '@react-stately/overlays'

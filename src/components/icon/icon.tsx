@@ -1,6 +1,6 @@
 import * as styles from './icon.css'
 
-import { Cart, Close, Delete, Menu, Minus, Plus } from './icons'
+import { Cart, Close, Delete, Menu, Minus, Next, Plus, Previous } from './icons'
 
 const icons = {
   cart: Cart,
@@ -8,7 +8,9 @@ const icons = {
   delete: Delete,
   menu: Menu,
   minus: Minus,
+  next: Next,
   plus: Plus,
+  previous: Previous,
 }
 
 export type Icon = keyof typeof icons
