@@ -92,7 +92,7 @@ export function Product({
                 value={quantitySelected}
                 onChange={setQuantitySelected}
               />
-              <Button type="submit" onClick={addToCart} icon="cart">
+              <Button type="submit" onClick={addToCart} icon="cart" shadow>
                 Add to cart
               </Button>
             </Stack>

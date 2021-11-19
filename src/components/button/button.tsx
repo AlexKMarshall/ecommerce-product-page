@@ -9,6 +9,7 @@ type Props = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'> & {
   onClick: () => void
   variant?: 'accent'
   icon?: Icon
+  shadow?: boolean
 }
 
 export function Button({
@@ -17,11 +18,12 @@ export function Button({
   type = 'button',
   variant,
   icon,
+  shadow,
   ...props
 }: Props): JSX.Element {
   return (
     <button
-      className={styles.button({ variant })}
+      className={styles.button({ variant, shadow })}
       onClick={onClick}
       type={type}
       {...props}
