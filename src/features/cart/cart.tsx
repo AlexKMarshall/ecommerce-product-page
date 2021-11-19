@@ -88,10 +88,6 @@ export function Cart(props: Props): JSX.Element {
     { onPress: () => state.open() },
     openButtonRef
   )
-  const { buttonProps: closeButtonProps } = useButton(
-    { onPress: () => state.close() },
-    closeButtonRef
-  )
 
   return (
     <>
@@ -118,11 +114,7 @@ export function Cart(props: Props): JSX.Element {
 }
 
 function CartContents(): JSX.Element {
-  const { items, removeItem } = useCart()
-  const priceFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  })
+  const { items } = useCart()
 
   if (items.length < 1) {
     return (
@@ -136,40 +128,50 @@ function CartContents(): JSX.Element {
     <Stack space="m">
       <Stack space="s" component="ul">
         {items.map((item) => (
-          <Cluster
-            component="li"
-            key={item.product.name}
-            justify="space-between"
-            noWrap
-          >
-            <Cluster noWrap>
-              <Thumbnail src={item.product.thumbnail} alt="" />
-              <Stack space="none">
-                <Text>{item.product.name}</Text>
-                <Cluster space="2xs">
-                  <Text>{`${priceFormatter.format(item.product.price)} x ${
-                    item.quantity
-                  }`}</Text>
-                  <Text color="primary" weight="bold">
-                    {priceFormatter.format(item.product.price * item.quantity)}
-                  </Text>
-                </Cluster>
-              </Stack>
-            </Cluster>
-            <IconButton
-              onClick={() => {
-                removeItem(item.product.name)
-              }}
-              label={`Remove ${item.product.name} from cart`}
-              color="muted"
-            >
-              <Icon icon="delete" size="s" />
-            </IconButton>
-          </Cluster>
+          <CartItem key={item.product.name} item={item} />
         ))}
       </Stack>
       <Button onClick={() => {}}>Checkout</Button>
     </Stack>
+  )
+}
+
+type CartItemProps = {
+  item: ProductInCart
+}
+function CartItem({ item }: CartItemProps): JSX.Element {
+  const priceFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
+  const { removeItem } = useCart()
+  const formattedPrice = priceFormatter.format(item.product.price)
+  const totalPrice = priceFormatter.format(item.product.price * item.quantity)
+
+  return (
+    <Cluster component="li" justify="space-between" noWrap>
+      <Cluster noWrap>
+        <Thumbnail src={item.product.thumbnail} alt="" />
+        <Stack space="none">
+          <Text>{item.product.name}</Text>
+          <Cluster space="2xs">
+            <Text>{`${formattedPrice} x ${item.quantity}`}</Text>
+            <Text color="primary" weight="bold">
+              {totalPrice}
+            </Text>
+          </Cluster>
+        </Stack>
+      </Cluster>
+      <IconButton
+        onClick={() => {
+          removeItem(item.product.name)
+        }}
+        label={`Remove ${item.product.name} from cart`}
+        color="muted"
+      >
+        <Icon icon="delete" size="s" />
+      </IconButton>
+    </Cluster>
   )
 }
 
