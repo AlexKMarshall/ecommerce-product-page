@@ -97,9 +97,23 @@ export function Product({
     <>
       <Box className={styles.imageSlider}>
         <Image
+          src={carousel.previousItem}
+          alt=""
+          key={carousel.previousItem.src}
+          className={styles.carouselImage({ position: 'previous' })}
+        />
+        <Image
           src={carousel.selectedItem}
-          alt="tan and white sneakers on orange background"
+          alt=""
           priority
+          key={carousel.selectedItem.src}
+          className={styles.carouselImage({ position: 'current' })}
+        />
+        <Image
+          src={carousel.nextItem}
+          alt=""
+          key={carousel.nextItem.src}
+          className={styles.carouselImage({ position: 'next' })}
         />
         <Box padding="m" display="grid">
           <Cluster justify="space-between">
