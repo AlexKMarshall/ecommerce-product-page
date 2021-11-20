@@ -1,5 +1,3 @@
-import * as styles from './box.css'
-
 import { AllHTMLAttributes, ElementType, ReactNode } from 'react'
 import clsx, { ClassValue } from 'clsx'
 
@@ -31,7 +29,7 @@ export function Box({
   }
 
   const sprinkleClassNames = sprinkles(sprinkleProps)
-  const classNames = clsx(styles.box, sprinkleClassNames, classNameProp)
+  const classNames = clsx(sprinkleClassNames, classNameProp)
 
   return (
     <Component className={classNames} {...nativeProps}>
