@@ -91,7 +91,6 @@ export function Cart(props: Props): JSX.Element {
     <>
       <IconButton
         onClick={() => {}}
-        color="primary"
         {...openButtonProps}
         label="View Shopping Cart"
         badgeValue={totalQuantity}

@@ -122,16 +122,11 @@ export function Product({
           <Cluster justify="space-between">
             <IconButton
               label="Previous Image"
-              color="primary"
               onClick={carousel.selectPrevious}
             >
               <Icon icon="previous" size="xs" />
             </IconButton>
-            <IconButton
-              label="Next Image"
-              color="primary"
-              onClick={carousel.selectNext}
-            >
+            <IconButton label="Next Image" onClick={carousel.selectNext}>
               <Icon icon="next" size="xs" />
             </IconButton>
           </Cluster>

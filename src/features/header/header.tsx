@@ -2,6 +2,7 @@
 import * as styles from './header.css'
 
 import {
+  Avatar,
   Box,
   Cluster,
   Icon,
@@ -47,10 +48,10 @@ export function Header(): JSX.Element {
           </Box>
         </Cluster>
 
-        <Cluster space="xs">
+        <Cluster space={{ all: 'xs', desktop: 'xl' }}>
           <Cart />
-          <IconButton href="/" label="Profile">
-            <img src="/image-avatar.png" alt="" width="24" height="24" />
+          <IconButton href="/" label="Profile" hoverOutline>
+            <Avatar src="/image-avatar.png" />
           </IconButton>
         </Cluster>
       </Cluster>

@@ -7,7 +7,7 @@ export const header = style({
   padding: themeTokens.space.l,
 
   '@media': {
-    'screen and (min-width: 1024px)': {
+    [resolveScreenMQ.desktop]: {
       padding: themeTokens.space.none,
       paddingTop: themeTokens.space.xl,
       paddingBottom: themeTokens.space.xl,

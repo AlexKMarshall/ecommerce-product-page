@@ -1,7 +1,10 @@
 import { colorTokens, themeTokens } from 'src/styles/theme.css'
+import { createVar, style } from '@vanilla-extract/css'
 
 import { recipe } from '@vanilla-extract/recipes'
-import { style } from '@vanilla-extract/css'
+
+const color = createVar()
+const hoverColor = createVar()
 
 const iconButtonBase = style({
   background: colorTokens.background.body,
@@ -14,11 +17,17 @@ const iconButtonBase = style({
   minWidth: '44px',
   borderRadius: themeTokens.borderRadius.circle,
   position: 'relative',
+  // outline: '1px solid transparent',
+  // outlineOffset: '4px',
+  color,
 
-  outlineOffset: '4px',
-
-  ':active': {
-    filter: 'brightness(0.8)',
+  selectors: {
+    '&:hover, &:active': {
+      color: hoverColor,
+    },
+    '&:focus-visible': {
+      outlineColor: colorTokens.background.accent,
+    },
   },
 })
 
@@ -27,16 +36,32 @@ export const iconButton = recipe({
 
   variants: {
     color: {
-      primary: {
-        color: colorTokens.text.primary.dark,
-      },
-      secondary: {
-        color: colorTokens.text.secondary.dark,
+      default: {
+        vars: {
+          [color]: colorTokens.text.secondary.dark,
+          [hoverColor]: colorTokens.text.primary.dark,
+        },
       },
       muted: {
-        color: colorTokens.text.muted.dark,
+        vars: {
+          [color]: colorTokens.text.muted.dark,
+          [hoverColor]: colorTokens.text.secondary.dark,
+        },
       },
     },
+    hoverOutline: {
+      true: {
+        ':hover': {
+          outlineStyle: 'auto',
+          outlineWidth: '2px',
+          outlineColor: colorTokens.background.accent,
+        },
+      },
+    },
+  },
+
+  defaultVariants: {
+    color: 'default',
   },
 })
 
