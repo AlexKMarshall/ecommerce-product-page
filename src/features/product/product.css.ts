@@ -2,6 +2,20 @@ import { colorTokens, themeTokens } from 'src/styles/theme.css'
 import { globalStyle, style } from '@vanilla-extract/css'
 
 import { recipe } from '@vanilla-extract/recipes'
+import { resolveScreenMQ } from 'src/styles/sprinkles.css'
+
+export const wrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+
+  '@media': {
+    [resolveScreenMQ.desktop]: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: themeTokens.space['3xl'],
+    },
+  },
+})
 
 export const brand = style({
   color: colorTokens.text.accent,

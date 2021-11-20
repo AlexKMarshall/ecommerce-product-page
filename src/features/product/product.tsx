@@ -97,7 +97,7 @@ export function Product({
   const carousel = useCarousel(productImages)
 
   return (
-    <>
+    <Box className={styles.wrapper}>
       <Box className={styles.imageSlider}>
         <Image
           src={carousel.previousItem}
@@ -173,6 +173,6 @@ export function Product({
           </form>
         </Stack>
       </Box>
-    </>
+    </Box>
   )
 }

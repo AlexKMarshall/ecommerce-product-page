@@ -14,7 +14,7 @@ function Home({ product }: InferGetStaticPropsType<typeof getStaticProps>) {
       </Head>
       <Center>
         <Header />
-        <Box component="main" paddingBottom="2xl">
+        <Box component="main" paddingBottom="2xl" padding={{ desktop: '2xl' }}>
           <Product {...product} />
         </Box>
       </Center>
