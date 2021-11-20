@@ -28,7 +28,7 @@ export const navAnchor = style({
         height: '4px',
         width: '100%',
         left: 0,
-        bottom: '-45px',
+        bottom: '-54px',
         backgroundColor: colorTokens.background.accent,
         transformOrigin: 'left',
         transform: 'scaleX(0)',

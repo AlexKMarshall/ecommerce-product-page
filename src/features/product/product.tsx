@@ -157,7 +157,7 @@ export function Product({
             ) : null}
           </Cluster>
           <form onSubmit={(e) => e.preventDefault()}>
-            <Stack space="xs">
+            <Box className={styles.formButtonWrapper}>
               <NumberField
                 id="quantity"
                 label="Quantity"
@@ -169,7 +169,7 @@ export function Product({
               <Button type="submit" onClick={addToCart} icon="cart" shadow>
                 Add to cart
               </Button>
-            </Stack>
+            </Box>
           </form>
         </Stack>
       </Box>

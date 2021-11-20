@@ -56,3 +56,26 @@ export const carouselImage = recipe({
     },
   },
 })
+
+export const formButtonWrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: themeTokens.space.xs,
+
+  '@media': {
+    [resolveScreenMQ.desktop]: {
+      flexDirection: 'row',
+    },
+  },
+})
+
+globalStyle(`${formButtonWrapper} > :first-child`, {
+  flexShrink: 1,
+  flexGrow: 0,
+  flexBasis: '33%',
+})
+globalStyle(`${formButtonWrapper} > :last-child`, {
+  flexShrink: 0,
+  flexGrow: 1,
+  flexBasis: '66%',
+})

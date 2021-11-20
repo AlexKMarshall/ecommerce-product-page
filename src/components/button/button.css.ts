@@ -1,6 +1,7 @@
 import { colorTokens, themeTokens } from 'src/styles/theme.css'
 
 import { recipe } from '@vanilla-extract/recipes'
+import { resolveScreenMQ } from 'src/styles/sprinkles.css'
 
 export const button = recipe({
   base: {
@@ -29,6 +30,12 @@ export const button = recipe({
     shadow: {
       true: {
         boxShadow: `0 20px 50px -20px ${colorTokens.background.accent}`,
+
+        '@media': {
+          [resolveScreenMQ.desktop]: {
+            boxShadow: 'none',
+          },
+        },
       },
       false: {},
     },
