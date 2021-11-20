@@ -57,6 +57,20 @@ export const carouselImage = recipe({
   },
 })
 
+export const priceWrapper = style({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'baseline',
+  gap: themeTokens.space.xs,
+
+  '@media': {
+    [resolveScreenMQ.desktop]: {
+      flexDirection: 'column',
+    },
+  },
+})
+
 export const formButtonWrapper = style({
   display: 'flex',
   flexDirection: 'column',

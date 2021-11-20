@@ -143,7 +143,7 @@ export function Product({
             </Text>
             <p>{description}</p>
           </Stack>
-          <Cluster justify="space-between" align="baseline">
+          <Box className={styles.priceWrapper}>
             <Cluster space="2xs">
               <Text size="xl" weight="bold" color="primary" inline>
                 {price}
@@ -151,11 +151,11 @@ export function Product({
               {discountPercent ? <Pill>{discountPercent}</Pill> : null}
             </Cluster>
             {oldPrice ? (
-              <Text component="p" color="muted">
+              <Text component="p" color="muted" weight="bold">
                 <s>{oldPrice}</s>
               </Text>
             ) : null}
-          </Cluster>
+          </Box>
           <form onSubmit={(e) => e.preventDefault()}>
             <Box className={styles.formButtonWrapper}>
               <NumberField
