@@ -1,6 +1,6 @@
+import { Box, Center } from 'src/components'
 import { Header, Product } from 'src/features'
 
-import { Box } from 'src/components'
 import Head from 'next/head'
 import { InferGetStaticPropsType } from 'next'
 
@@ -12,10 +12,12 @@ function Home({ product }: InferGetStaticPropsType<typeof getStaticProps>) {
         <meta name="description" content="Sample E-Commerce Product Page" />
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
-      <Header />
-      <Box component="main" paddingBottom="2xl">
-        <Product {...product} />
-      </Box>
+      <Center>
+        <Header />
+        <Box component="main" paddingBottom="2xl">
+          <Product {...product} />
+        </Box>
+      </Center>
     </>
   )
 }

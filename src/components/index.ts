@@ -1,5 +1,6 @@
 export * from './box'
 export * from './button'
+export * from './center'
 export * from './cluster'
 export * from './hidden-visually'
 export * from './icon'

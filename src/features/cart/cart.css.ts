@@ -19,14 +19,13 @@ export const underlay = style({
 export const overlay = style({
   background: colorTokens.background.body,
   borderRadius: themeTokens.borderRadius.m,
-  // minHeight: '33vh',
   display: 'flex',
   flexDirection: 'column',
 })
 
 export const cartHeader = style({
   padding: themeTokens.space.m,
-  borderBottom: `1px solid ${colorTokens.text.muted.dark}`,
+  borderBottom: `1px solid ${colorTokens.divider}`,
 })
 
 export const cartContents = style({

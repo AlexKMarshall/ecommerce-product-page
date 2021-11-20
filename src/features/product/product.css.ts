@@ -14,6 +14,8 @@ export const brand = style({
 export const imageSlider = style({
   display: 'grid',
   gridTemplateAreas: `'stack'`,
+  justifyContent: 'center',
+  alignContent: 'center',
 })
 
 globalStyle(`${imageSlider} > * `, {

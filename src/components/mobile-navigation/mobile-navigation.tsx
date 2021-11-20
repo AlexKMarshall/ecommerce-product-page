@@ -8,10 +8,11 @@ import {
   useOverlay,
   usePreventScroll,
 } from '@react-aria/overlays'
-import { ReactNode, useRef } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 
 import { FocusScope } from '@react-aria/focus'
 import Link from 'next/link'
+import { resolveScreenMQ } from 'src/styles/sprinkles.css'
 import { useButton } from '@react-aria/button'
 import { useDialog } from '@react-aria/dialog'
 import { useOverlayTriggerState } from '@react-stately/overlays'
@@ -73,6 +74,22 @@ export function MobileNavigation() {
     { onPress: () => state.close() },
     closeButtonRef
   )
+
+  useEffect(() => {
+    const mql = window.matchMedia(resolveScreenMQ.desktop)
+    const listener = (e: MediaQueryListEvent) => {
+      if (e.matches) {
+        state.close()
+      }
+    }
+
+    mql.addEventListener('change', listener)
+
+    return () => {
+      mql.removeEventListener('change', listener)
+    }
+  }, [])
+
   return (
     <>
       <IconButton {...openButtonProps} label="Open Navigation Menu">
