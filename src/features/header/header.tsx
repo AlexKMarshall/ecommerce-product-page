@@ -11,19 +11,40 @@ import {
 
 import { Cart } from '..'
 import Image from 'next/image'
+import Link from 'next/link'
 import Logo from 'public/logo.svg'
 import { ReactNode } from 'react'
 import { sprinkles } from 'src/styles/sprinkles.css'
+
+const navigationLinks = [
+  { label: 'Collections', url: '/' },
+  { label: 'Men', url: '/' },
+  { label: 'Women', url: '/' },
+  { label: 'About', url: '/' },
+  { label: 'Contact', url: '/' },
+]
 
 export function Header(): JSX.Element {
   return (
     <header className={styles.header}>
       <Cluster space="xs" justify="space-between">
-        <Cluster space="xs">
+        <Cluster space={{ all: 'xs', desktop: '2xl' }}>
           <MediaQueryVisibility>
             <MobileNavigation />
           </MediaQueryVisibility>
           <Image src={Logo} alt="Sneakers" />
+
+          <Box component="nav" display={{ all: 'none', desktop: 'block' }}>
+            <Cluster component="ul" space="xl">
+              {navigationLinks.map((navItem) => (
+                <li key={navItem.label}>
+                  <Link href={navItem.url}>
+                    <a className={styles.navAnchor}>{navItem.label}</a>
+                  </Link>
+                </li>
+              ))}
+            </Cluster>
+          </Box>
         </Cluster>
 
         <Cluster space="xs">
