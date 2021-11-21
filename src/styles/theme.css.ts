@@ -59,6 +59,7 @@ export const themeTokens = createGlobalTheme(':root', {
     l: '1.5rem',
     xl: '1.75rem',
     '2xl': '2rem',
+    '3xl': '3rem',
   },
   fontWeight: {
     regular: '400',
@@ -70,6 +71,7 @@ export const themeTokens = createGlobalTheme(':root', {
   borderRadius: {
     s: '6px',
     m: '10px',
+    l: '16px',
     circle: '50%',
     pill: '999px',
   },

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import * as styles from './product.css'
 
 import {
@@ -20,6 +21,10 @@ import productImage1 from 'public/image-product-1.jpg'
 import productImage2 from 'public/image-product-2.jpg'
 import productImage3 from 'public/image-product-3.jpg'
 import productImage4 from 'public/image-product-4.jpg'
+import productThumbnail1 from 'public/image-product-1-thumbnail.jpg'
+import productThumbnail2 from 'public/image-product-2-thumbnail.jpg'
+import productThumbnail3 from 'public/image-product-3-thumbnail.jpg'
+import productThumbnail4 from 'public/image-product-4-thumbnail.jpg'
 import { useCart } from '..'
 
 const productImages = [
@@ -27,6 +32,12 @@ const productImages = [
   productImage2,
   productImage3,
   productImage4,
+]
+const productThumbnails = [
+  productThumbnail1,
+  productThumbnail2,
+  productThumbnail3,
+  productThumbnail4,
 ]
 
 function useCarousel<T>(items: T[]) {
@@ -99,26 +110,28 @@ export function Product({
   return (
     <Box className={styles.wrapper}>
       <Box className={styles.imageSlider}>
-        <Image
-          src={carousel.previousItem}
-          alt=""
-          key={carousel.previousIndex}
-          className={styles.carouselImage({ position: 'previous' })}
-        />
-        <Image
-          src={carousel.selectedItem}
-          alt=""
-          priority
-          key={carousel.selectedIndex}
-          className={styles.carouselImage({ position: 'current' })}
-        />
-        <Image
-          src={carousel.nextItem}
-          alt=""
-          key={carousel.nextIndex}
-          className={styles.carouselImage({ position: 'next' })}
-        />
-        <Box padding="m" display="grid">
+        <Box className={styles.carouselImageWrapper}>
+          <Image
+            src={carousel.previousItem}
+            alt=""
+            key={carousel.previousIndex}
+            className={styles.carouselImage({ position: 'previous' })}
+          />
+          <Image
+            src={carousel.selectedItem}
+            alt=""
+            priority
+            key={carousel.selectedIndex}
+            className={styles.carouselImage({ position: 'current' })}
+          />
+          <Image
+            src={carousel.nextItem}
+            alt=""
+            key={carousel.nextIndex}
+            className={styles.carouselImage({ position: 'next' })}
+          />
+        </Box>
+        <Box padding="m" display={{ all: 'grid', desktop: 'none' }}>
           <Cluster justify="space-between">
             <IconButton
               label="Previous Image"
@@ -131,6 +144,24 @@ export function Product({
             </IconButton>
           </Cluster>
         </Box>
+        <Box className={styles.thumbnailWrapper}>
+          {productThumbnails.map((thumbnail, index) => (
+            <label key={thumbnail.src} className={styles.thumbnailLabel}>
+              <input
+                type="radio"
+                name="image-slider"
+                checked={carousel.selectedIndex === index}
+                onChange={() => carousel.selectIndex(index)}
+                className={styles.thumbnailHiddenInput}
+              />
+              <img
+                src={thumbnail.src}
+                alt=""
+                className={styles.thumbnailImage}
+              />
+            </label>
+          ))}
+        </Box>
       </Box>
       <Box padding="l">
         <Stack space="xl">
@@ -138,7 +169,12 @@ export function Product({
             <Link href={brand.url}>
               <a className={styles.brand}>{brand.name}</a>
             </Link>
-            <Text component="h1" size="xl" weight="bold" color="primary">
+            <Text
+              component="h1"
+              size={{ all: 'xl', desktop: '3xl' }}
+              weight="bold"
+              color="primary"
+            >
               {name}
             </Text>
             <p>{description}</p>

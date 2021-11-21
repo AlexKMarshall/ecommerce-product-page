@@ -27,12 +27,36 @@ export const brand = style({
 
 export const imageSlider = style({
   display: 'grid',
-  gridTemplateAreas: `'stack'`,
+  gridTemplateAreas: `'stack'
+                      'thumbnails'`,
+  gridTemplateRows: '1fr auto',
   justifyContent: 'center',
   alignContent: 'center',
+
+  '@media': {
+    [resolveScreenMQ.desktop]: {
+      gap: themeTokens.space.l,
+    },
+  },
 })
 
 globalStyle(`${imageSlider} > * `, {
+  gridArea: 'stack',
+})
+
+export const carouselImageWrapper = style({
+  display: 'grid',
+  gridTemplateAreas: `'layer'`,
+
+  '@media': {
+    [resolveScreenMQ.desktop]: {
+      borderRadius: themeTokens.borderRadius.l,
+      overflow: 'hidden',
+    },
+  },
+})
+
+globalStyle(`${carouselImageWrapper} > * `, {
   gridArea: 'stack',
 })
 
@@ -54,6 +78,54 @@ export const carouselImage = recipe({
         transform: 'translateX(100%)',
       },
     },
+  },
+})
+
+export const thumbnailWrapper = style({
+  gridArea: 'thumbnails',
+  display: 'none',
+  justifyContent: 'center',
+  gap: `min(${themeTokens.space.l}, 5%)`,
+
+  '@media': {
+    [resolveScreenMQ.desktop]: {
+      display: 'flex',
+    },
+  },
+})
+
+export const thumbnailHiddenInput = style({
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  opacity: '0%',
+})
+
+export const thumbnailLabel = style({
+  display: 'block',
+  position: 'relative',
+  background: 'transparent',
+  flexBasis: themeTokens.space['2xl'],
+})
+
+export const thumbnailImage = style({
+  width: '100%',
+  height: 'auto',
+  borderRadius: themeTokens.borderRadius.s,
+  outlineColor: 'transparent',
+  outlineStyle: 'auto',
+  outlineOffset: '0px',
+  transitionDuration: '200ms',
+  transitionProperty: 'outline-color, outline-offset',
+
+  selectors: {
+    [`${thumbnailHiddenInput}:checked + &, ${thumbnailHiddenInput}:hover + &`]:
+      {
+        outlineOffset: '4px',
+        outlineColor: colorTokens.background.accent,
+      },
   },
 })
 
